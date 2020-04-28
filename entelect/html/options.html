@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css"
+        rel="stylesheet">
+    <link href="../css/styles.css"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-sm">
+        <div class="options">
+
+            <div class="jumbotron">
+                <h1 class="display-4">Entelect options</h1>
+                <p class="lead">This is a simple extension for managing scripts on the entelect page.</p>
+                <hr class="my-4">
+                <!-- <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
+
+                <!-- NOTIFICATIONS -->
+                <div class="card">
+                    <div class="card-header">
+                        Notifications
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Exclusion list</h5>
+                        <p class="card-text">When marking the notifications as read, notifications containing the following names will be ignored.</p>
+
+                        <button type="button"
+                            id="addExclusion"
+                            class="btn btn-primary btn-sm btn-block">Add exclusion</button>
+
+                        <div class="exclusions"
+                            id="exclusions">
+                            <!-- Exclusions to be inserted here -->
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <button type="button"
+                            class="btn btn-warning">Clear</button>
+                        <button type="button"
+                            id="saveExclusions"
+                            class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/options.js"></script>
+</body>
+
+</html>
