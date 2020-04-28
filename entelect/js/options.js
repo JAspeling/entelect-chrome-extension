@@ -4,6 +4,7 @@ function isNullOrUndefined(value) {
 
 let exclusions = document.getElementById('exclusions');
 let addExclusionButton = document.getElementById('addExclusion');
+let clearExclusionButton = document.getElementById('clearExclusions');
 
 const saveExclusions = document.getElementById('saveExclusions');
 
@@ -13,8 +14,7 @@ saveExclusions.onclick = function () {
 
 function addExclusion(exclusion) {
     let itemContainer = document.createElement("div");
-    itemContainer.classList.add("form-group");
-    itemContainer.classList.add("row");
+    itemContainer.classList.add('row', 'form-group');
 
     let inputContainer = document.createElement("div");
     inputContainer.classList.add("col-11");
@@ -26,16 +26,13 @@ function addExclusion(exclusion) {
     inputContainer.appendChild(inputElement);
 
     let removeElement = document.createElement("button");
-    removeElement.classList.add("btn");
-    removeElement.classList.add("btn-danger");
-    removeElement.classList.add("remove");
+    removeElement.classList.add('btn', 'btn-danger', 'remove');
     removeElement.textContent = "-";
 
     itemContainer.appendChild(inputContainer);
     itemContainer.appendChild(removeElement);
 
     removeElement.addEventListener('click', function () {
-        debugger;
         exclusions.removeChild(itemContainer);
     });
     exclusions.appendChild(itemContainer);
@@ -66,4 +63,8 @@ getOptions();
 
 addExclusionButton.onclick = function () {
     addExclusion("");
+}
+
+clearExclusionButton.onclick = () => {
+    [...exclusions.children].forEach(node => exclusions.removeChild(node));
 }
