@@ -9,7 +9,9 @@ markAsRead.onclick = function (element) {
 
     chrome.tabs.executeScript({
         file: 'js/dismiss-notifications.js'
-    }, setTimeout(() => {
-        window.close();
-    }, 100));
+    }, function () {
+        setTimeout(() => {
+            window.close();
+        }, 100)
+    });
 }

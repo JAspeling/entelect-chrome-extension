@@ -23,5 +23,7 @@
         "48": "images/entelect_48.png",
         "128": "images/entelect_128.png"
     },
-    "manifest_version": 2
+    "manifest_version": 2,
+    "author": "Johan Aspeling",
+    "homepage_url": "https://github.com/JAspeling/entelect-chrome-extension"
 }
