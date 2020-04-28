@@ -9,10 +9,6 @@ const saveExclusions = document.getElementById('saveExclusions');
 
 saveExclusions.onclick = function () {
     saveOptions();
-
-    // chrome.storage.sync.set({ "notificationExclusions": data }, function () {
-    //     console.log('Saved exclusions as ' + data);
-    // })
 }
 
 function addExclusion(exclusion) {
@@ -49,10 +45,8 @@ function addExclusion(exclusion) {
 function getOptions() {
     chrome.storage.sync.get('notificationExclusions', function (data) {
         const value = data.notificationExclusions;
-        console.log('chrome.storage.sync.get', value);
 
         if (!isNullOrUndefined(value) && value.length > 0) {
-            console.log('Value array', value);
 
             value.forEach(val => addExclusion(val));
         } else {
@@ -62,9 +56,8 @@ function getOptions() {
 }
 
 function saveOptions() {
-    // Save the Value items 
+    // Save the Value items
     var inputs = [...exclusions.querySelectorAll('input')].map(input => input.value);
-    console.log(inputs);
 
     chrome.storage.sync.set({ 'notificationExclusions': inputs });
 }

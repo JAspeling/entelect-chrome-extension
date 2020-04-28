@@ -1,5 +1,3 @@
-console.log('Dismissing notifications')
-
 exclusions = [];
 
 var containsOneOf = function (value, strings, ignoreCase = true) {
