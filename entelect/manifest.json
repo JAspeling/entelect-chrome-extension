@@ -1,6 +1,6 @@
 {
     "name": "Entelect",
-    "version": "1.0",
+    "version": "0.0.0.1",
     "description": "General extensions for the entelect employee site",
     "permissions": ["storage", "declarativeContent", "activeTab"],
     "background": {
