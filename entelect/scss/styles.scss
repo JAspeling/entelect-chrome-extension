@@ -1,0 +1,35 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css';
+
+@import '../vendor/bootstrap.min.css';
+@import '../vendor/toastr/toastr.min.css';
+@import '../vendor/sweetalert/sweetalert2.min.css';
+@import '../vendor/jquery-ui/jquery-ui.min.css';
+@import '../vendor/jquery-ui/jquery-ui.structure.min.css';
+
+@import './neumorphism/neumorphism.scss';
+
+@import './custom.scss';
+@import './popup.scss';
+
+@import './options.scss';
+@import './footer.scss';
+
+
+html,
+body {
+    background: $background;
+}
+
+body {
+    font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+    font-size: 100%;
+}
+
+.main {
+    overflow: hidden;
+    width: 400px;
+    max-height: 600px;
+    margin: 0px;
+    padding: 15px;
+    background-color: $background;
+}

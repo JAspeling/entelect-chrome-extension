@@ -1,0 +1,33 @@
+.btn.neumorphic {
+    transition: none;
+    border: 1px solid $background;
+    background: $background;
+
+    border-radius: 4px;
+
+    color: rgba(0, 0, 0, 0.5);
+
+    box-shadow: 2px 2px 2px $shadow-dark, -2px -2px 2px $shadow-light;
+
+    &:active {
+        transition: padding-top padding-bottom .1s;
+
+        box-shadow: $shadow-inner !important;
+        border: 1px solid $background !important;
+        border-bottom: 1px solid $border-light !important;
+        border-right: 1px solid $border-light !important;
+        padding-bottom: 3px;
+        padding-top: 5px;
+    }
+
+    &:focus,
+    &:hover {
+        box-shadow: $shadow-outer;
+        background: $background-linear;
+        border: 1px solid $background;
+
+        border-right: 1px solid $border-dark;
+        border-bottom: 1px solid $border-dark;
+        /* border-image-source: linear-gradient(to bottom right, #f8f9fa, rgba(0, 0, 0, 0.08)); */
+    }
+}

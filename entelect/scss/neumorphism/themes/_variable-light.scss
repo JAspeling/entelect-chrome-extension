@@ -1,0 +1,12 @@
+$background: #f8f9fa;
+
+$shadow-light: rgba(255, 255, 255, 1);
+$shadow-dark: rgba(0, 0, 0, 0.2);
+
+$border-light: rgba(255, 255, 255, 1);
+$border-dark: rgba(0, 0, 0, 0.2);
+
+$shadow-outer: 2px 2px 2px $shadow-dark, -2px -2px 2px $shadow-light;
+$shadow-inner: inset 2px 2px 2px $shadow-dark, inset -2px -2px 2px $shadow-light;
+
+$background-linear: linear-gradient(to bottom right, $background, rgba(0, 0, 0, 0.08));

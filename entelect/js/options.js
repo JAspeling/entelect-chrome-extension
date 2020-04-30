@@ -22,26 +22,8 @@ function addExclusion(exclusion) {
     let itemContainer = document.createElement("div");
     itemContainer.classList.add('row', 'form-group');
 
-    let inputContainer = document.createElement("div");
-    inputContainer.classList.add("col-11", "exclusion-item");
-
-    let moveIcon = document.createElement("i");
-    moveIcon.classList.add("fa", "fa-arrows-alt");
-
-    let moveElement = document.createElement("div");
-    moveElement.classList.add("drag-handler");
-    moveElement.appendChild(moveIcon);
-
-    let inputElement = document.createElement("input");
-    inputElement.classList.add("form-control");
-    inputElement.value = exclusion;
-
-    inputContainer.appendChild(moveElement);
-    inputContainer.appendChild(inputElement);
-
-    let removeElement = document.createElement("button");
-    removeElement.classList.add('btn', 'btn-danger', 'remove');
-    removeElement.textContent = "-";
+    let inputContainer = createInputContainer(exclusion);
+    let removeElement = createRemoveButton();
 
     itemContainer.appendChild(inputContainer);
     itemContainer.appendChild(removeElement);
@@ -50,6 +32,31 @@ function addExclusion(exclusion) {
         exclusions.removeChild(itemContainer);
     });
     exclusions.appendChild(itemContainer);
+}
+
+function createRemoveButton() {
+    let removeElement = document.createElement("button");
+    removeElement.classList.add('btn', 'btn-danger', 'remove');
+    removeElement.textContent = "-";
+    return removeElement;
+}
+
+function createInputContainer(exclusion) {
+    let inputContainer = document.createElement("div");
+    inputContainer.classList.add("col-11", "exclusion-item");
+
+    let moveIcon = document.createElement("i");
+    moveIcon.classList.add("fa", "fa-arrows-alt");
+    let moveElement = document.createElement("div");
+    moveElement.classList.add("drag-handler");
+    moveElement.appendChild(moveIcon);
+
+    let inputElement = document.createElement("input");
+    inputElement.classList.add("form-control");
+    inputElement.value = exclusion;
+    inputContainer.appendChild(moveElement);
+    inputContainer.appendChild(inputElement);
+    return inputContainer;
 }
 
 // Function to add the saved options here.
@@ -82,7 +89,6 @@ addExclusionButton.onclick = function () {
 }
 
 clearExclusionButton.onclick = () => {
-
     Swal.fire({
         title: 'Are you sure?',
         text: "This will clear all the saved exclusions.",
