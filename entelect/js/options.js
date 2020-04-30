@@ -1,3 +1,9 @@
+// ui-sortable 
+
+$("#exclusions").sortable();
+
+// ui-sortable 
+
 function isNullOrUndefined(value) {
     return value == null || value == undefined;
 }
@@ -17,12 +23,20 @@ function addExclusion(exclusion) {
     itemContainer.classList.add('row', 'form-group');
 
     let inputContainer = document.createElement("div");
-    inputContainer.classList.add("col-11");
+    inputContainer.classList.add("col-11", "exclusion-item");
+
+    let moveIcon = document.createElement("i");
+    moveIcon.classList.add("fa", "fa-arrows-alt");
+
+    let moveElement = document.createElement("div");
+    moveElement.classList.add("drag-handler");
+    moveElement.appendChild(moveIcon);
 
     let inputElement = document.createElement("input");
     inputElement.classList.add("form-control");
     inputElement.value = exclusion;
 
+    inputContainer.appendChild(moveElement);
     inputContainer.appendChild(inputElement);
 
     let removeElement = document.createElement("button");
