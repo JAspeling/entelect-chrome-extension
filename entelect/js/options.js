@@ -57,7 +57,7 @@ function saveOptions() {
     var inputs = [...exclusions.querySelectorAll('input')].map(input => input.value);
 
     chrome.storage.sync.set({ 'notificationExclusions': inputs }, (data) => {
-        toastr.success('Exclusions saved!');
+        toastr.success('Saved!');
     });
 }
 
@@ -68,5 +68,19 @@ addExclusionButton.onclick = function () {
 }
 
 clearExclusionButton.onclick = () => {
-    [...exclusions.children].forEach(node => exclusions.removeChild(node));
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "This will clear all the saved exclusions.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+    }).then((result) => {
+        if (result.value) {
+            [...exclusions.children].forEach(node => exclusions.removeChild(node));
+        }
+    });
+
 }
