@@ -1,0 +1,8 @@
+div {
+    &.neumorphic {
+        border-radius: $border-radius-sm;
+
+        border-top: 1px solid $background;
+        box-shadow: $shadow-outer;
+    }
+}

@@ -59,6 +59,16 @@ a.neumorphic-button i:focus, a.neumorphic-button i:hover {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+div.neumorphic {
+  border-radius: 3px;
+  border-top: 1px solid #f8f9fa;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2), -2px -2px 2px white;
+}
+
+body.neumorphism * {
+  color: rgba(0, 0, 0, 0.5);
+}
+
 .options {
   margin: 1rem;
 }
@@ -131,23 +141,44 @@ a.neumorphic-button i:focus, a.neumorphic-button i:hover {
   min-height: 100px;
   padding: 1rem 0;
   margin: 0 1rem 1rem 1rem;
-  border-radius: 3px;
-  border-top: 1px solid #f8f9fa;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2), -2px -2px 2px white;
 }
-.footer .left {
-  background: green;
-  height: 100%;
+.footer .info {
+  display: flex;
+  justify-content: center;
 }
-.footer .right {
-  background: blue;
-  height: 100%;
+.footer .info ul {
+  display: flex;
+}
+.footer .info ul li {
+  list-style: none;
+  align-self: center;
+}
+.footer .info ul li:not(:last-child) {
+  margin-right: 1em;
+  padding-right: 1em;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 .footer .middle {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  height: 100%;
 }
+.footer .middle .logo {
+  height: 75px;
+  width: 75px;
+  margin: auto auto;
+  margin-bottom: 1rem;
+}
+.footer .middle .logo-info {
+  font-style: italic;
+  font-size: smaller;
+  margin: auto auto;
+  color: rgba(0, 0, 0, 0.3);
+}
+.footer .middle .logo-info strong {
+  font-weight: 500;
+}
+
 html,
 body {
   background: #f8f9fa;

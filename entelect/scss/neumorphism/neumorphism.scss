@@ -4,3 +4,12 @@
 @import './themes/variable-light';
 
 @import './button';
+@import './panels';
+
+body {
+    &.neumorphism {
+        * {
+            color: $color;
+        }
+    }
+}
