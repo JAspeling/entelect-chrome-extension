@@ -26,5 +26,9 @@ chrome.runtime.onMessage.addListener(
                 }
             });
         }
+
+        if (request.message === 'success_notification') {
+            toastr.success(request.data);
+        }
     }
 );
