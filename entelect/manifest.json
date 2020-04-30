@@ -20,6 +20,8 @@
                 "<all_urls>"
             ],
             "js": [
+                "vendor/jquery-3.2.1.min.js",
+                "vendor/toastr/toastr.min.js",
                 "vendor/sweetalert/sweetalert2.all.min.js",
                 "js/utils.js",
                 "js/dismiss-notifications.js"

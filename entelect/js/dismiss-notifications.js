@@ -15,11 +15,13 @@ chrome.runtime.onMessage.addListener(
                 if (result.value) {
                     chrome.storage.sync.get('notificationExclusions', function (data) {
                         exclusions = data.notificationExclusions;
-                        console.log('Excluding', exclusions);
+                        console.log('Clearing notifications, excluding: ', exclusions);
 
                         [...document.querySelectorAll('.alert-notification')]
                             .filter(n => !containsOneOf(n.childNodes[1].innerText, exclusions, true))
                             .forEach(n => n.childNodes[0].click());
+
+                        toastr.success('Cleared!');
                     });
                 }
             });
