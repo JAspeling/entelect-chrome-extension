@@ -2,12 +2,29 @@
     "name": "Entelect",
     "version": "0.0.0.1",
     "description": "General extensions for the entelect employee site",
-    "permissions": ["storage", "declarativeContent", "activeTab"],
+    "permissions": [
+        "storage",
+        "declarativeContent",
+        "activeTab"
+    ],
     "background": {
-        "scripts": ["js/background.js"],
+        "scripts": [
+            "js/background.js"
+        ],
         "persistent": false
     },
     "options_page": "html/options.html",
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "vendor/sweetalert/sweetalert2.all.min.js",
+                "js/dismiss-notifications.js"
+            ]
+        }
+    ],
     "page_action": {
         "default_popup": "index.html",
         "default_icon": {

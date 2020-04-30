@@ -27,7 +27,36 @@
   border: 1px solid #f8f9fa;
   border-right: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  /* border-image-source: linear-gradient(to bottom right, #f8f9fa, rgba(0, 0, 0, 0.08)); */
+}
+
+a:hover {
+  text-decoration: none;
+}
+a:not(:last-child) {
+  margin-right: 0.5rem;
+}
+a.neumorphic-button i {
+  padding: 5px;
+  border-radius: 50%;
+  border: 1px solid #f8f9fa;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2), -2px -2px 2px white;
+  color: rgba(0, 0, 0, 0.5);
+}
+a.neumorphic-button i:active {
+  transition: padding-top padding-bottom 0.1s;
+  box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.2), inset -2px -2px 2px white !important;
+  border: 1px solid #f8f9fa !important;
+  border-bottom: 1px solid white !important;
+  border-right: 1px solid white !important;
+  padding-bottom: 4px;
+  padding-top: 6px;
+}
+a.neumorphic-button i:focus, a.neumorphic-button i:hover {
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2), -2px -2px 2px white;
+  background: linear-gradient(to bottom right, #f8f9fa, rgba(0, 0, 0, 0.08));
+  border: 1px solid #f8f9fa;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .options {
@@ -65,32 +94,6 @@
   padding: 0.3rem;
   display: flex;
   justify-content: flex-end;
-}
-
-a.neumorphic {
-  color: rgba(0, 0, 0, 0.5);
-}
-a.neumorphic:hover {
-  text-decoration: none;
-}
-a.neumorphic i {
-  padding: 5px;
-  border-radius: 50%;
-  border: 1px solid #f8f9fa;
-  box-shadow: 2px 2px 2px white, -2px -2px 2px white;
-  color: rgba(0, 0, 0, 0.5);
-}
-a.neumorphic i:active {
-  box-shadow: !important;
-  border: 1px solid #f8f9fa;
-}
-a.neumorphic i:focus, a.neumorphic i:hover {
-  box-shadow: 2px 2px 2px white, -2px -2px 2px white;
-  background: linear-gradient(to bottom right, #f8f9fa, white);
-  border: 1px solid #f8f9fa;
-  border-right: 1px solid white;
-  border-bottom: 1px solid white;
-  /* border-image-source: linear-gradient(to bottom right, #f8f9fa, rgba(0, 0, 0, 0.08)); */
 }
 
 .exclusion-item {
