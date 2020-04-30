@@ -56,7 +56,9 @@ function saveOptions() {
     // Save the Value items
     var inputs = [...exclusions.querySelectorAll('input')].map(input => input.value);
 
-    chrome.storage.sync.set({ 'notificationExclusions': inputs });
+    chrome.storage.sync.set({ 'notificationExclusions': inputs }, (data) => {
+        toastr.success('Exclusions saved!');
+    });
 }
 
 getOptions();
