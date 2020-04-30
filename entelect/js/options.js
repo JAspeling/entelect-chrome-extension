@@ -39,7 +39,7 @@ function createInputContainer(exclusion) {
     inputContainer.classList.add("col-11", "exclusion-item");
 
     let moveIcon = document.createElement("i");
-    moveIcon.classList.add("fa", "fa-arrows-alt");
+    moveIcon.classList.add("fa", "fa-reorder");
     let moveElement = document.createElement("div");
     moveElement.classList.add("drag-handler");
     moveElement.appendChild(moveIcon);
