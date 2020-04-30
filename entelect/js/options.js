@@ -1,12 +1,5 @@
 // ui-sortable 
-
 $("#exclusions").sortable();
-
-// ui-sortable 
-
-function isNullOrUndefined(value) {
-    return value == null || value == undefined;
-}
 
 let exclusions = document.getElementById('exclusions');
 let addExclusionButton = document.getElementById('addExclusion');

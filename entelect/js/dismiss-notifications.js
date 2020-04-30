@@ -1,25 +1,5 @@
 exclusions = [];
 
-var containsOneOf = function (value, strings, ignoreCase = true) {
-    let target = value;
-
-    target = ignoreCase ? target.toLocaleUpperCase() : target;
-    if (!strings || strings.length === 0) {
-        return false;
-    }
-
-    strings = strings.map((str) => {
-        return ignoreCase ? str.toLocaleUpperCase() : str;
-    });
-    for (const str of strings) {
-        if (target.includes(str)) {
-            return true;
-        }
-    }
-
-    return false;
-};
-
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
         if (request.message === "clear_notifications") {
