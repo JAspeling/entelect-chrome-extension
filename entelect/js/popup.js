@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     clearNotifications.onclick = function (element) {
         chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
             var activeTab = tabs[0];
-            chrome.tabs.sendMessage(activeTab.id, { "message": "clear_notifications" });
+            chrome.tabs.sendMessage(activeTab.id, { message: "clear_notifications" });
         });
     }
 

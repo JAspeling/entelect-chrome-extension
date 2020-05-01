@@ -25,17 +25,11 @@ const clearNotifications = () => {
     });
 }
 
-chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
-        if (request.message === "clear_notifications") {
-
-        }
-
-        switch (request.message) {
-            case 'clear_notifications': clearNotifications(); break;
-            case 'success_notification': toastr.success(request.data); break;
-            case 'error_notification': toastr.error(request.data); break;
-            case 'warning_notification': toastr.warning(request.data); break;
-        }
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    switch (request.message) {
+        case 'clear_notifications': clearNotifications(); break;
+        case 'success_notification': toastr.success(request.data); break;
+        case 'error_notification': toastr.error(request.data); break;
+        case 'warning_notification': toastr.warning(request.data); break;
     }
-);
+});

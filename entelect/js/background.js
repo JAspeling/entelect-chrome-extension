@@ -17,7 +17,7 @@ chrome.runtime.onInstalled.addListener(function () {
     });
 });
 
-function sendMessage(message, data) {
+const sendMessage = (message, data) => {
     chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
         var activeTab = tabs[0];
         chrome.tabs.sendMessage(activeTab.id, { message, data });
@@ -25,7 +25,9 @@ function sendMessage(message, data) {
 }
 
 const setStorage = (key, data, callback) => {
-    chrome.storage.sync.set({}[key] = data, (data) => {
+    var obj = {};
+    obj[key] = data;
+    chrome.storage.sync.set(obj, (data) => {
         callback(undefined, data);
     });
 }
@@ -36,7 +38,7 @@ const getStorage = (key, callback) => {
     });
 }
 
-chrome.contextMenus.onClicked.addListener(function (data) {
+chrome.contextMenus.onClicked.addListener((data) => {
     if (data.menuItemId === 'addToExclusions') {
         const selected = data.selectionText.trim();
 
@@ -50,7 +52,7 @@ chrome.contextMenus.onClicked.addListener(function (data) {
             values.push(selected);
             console.log(values);
 
-            setStorage('notificationExclusions', data, (error, data) => {
+            setStorage('notificationExclusions', values, (error, data) => {
                 if (error) {
                     return sendMessage('error_notification', `Failed to add '${selected}'.`);
                 }

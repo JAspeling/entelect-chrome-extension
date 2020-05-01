@@ -20,6 +20,10 @@
             "matches": [
                 "<all_urls>"
             ],
+            "css": [
+                "vendor/sweetalert/sweetalert2.min.css",
+                "vendor/toastr/toastr.min.css"
+            ],
             "js": [
                 "vendor/jquery-3.2.1.min.js",
                 "vendor/toastr/toastr.min.js",
