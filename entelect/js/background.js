@@ -11,28 +11,51 @@ chrome.runtime.onInstalled.addListener(function () {
     });
 
     chrome.contextMenus.create({
-        "id": "sampleContextMenu",
+        "id": "addToExclusions",
         "title": "Add to exclusion",
         "contexts": ["selection"]
     });
 });
 
+function sendMessage(message, data) {
+    chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
+        var activeTab = tabs[0];
+        chrome.tabs.sendMessage(activeTab.id, { message, data });
+    });
+}
+
+const setStorage = (key, data, callback) => {
+    chrome.storage.sync.set({}[key] = data, (data) => {
+        callback(undefined, data);
+    });
+}
+
+const getStorage = (key, callback) => {
+    chrome.storage.sync.get(key, (data) => {
+        callback(data)
+    });
+}
 
 chrome.contextMenus.onClicked.addListener(function (data) {
-    const selected = data.selectionText;
+    if (data.menuItemId === 'addToExclusions') {
+        const selected = data.selectionText.trim();
 
-    chrome.storage.sync.get('notificationExclusions', function (data) {
-        const values = data.notificationExclusions || [];
-        values.push(selected);
+        getStorage('notificationExclusions', (data) => {
+            const values = data.notificationExclusions || [];
 
-        console.log(values);
+            if (values.find(val => val.toLowerCase() === selected.toLowerCase())) {
+                return sendMessage('warning_notification', `${selected} already in the exclusion list.`);
+            }
 
-        chrome.storage.sync.set({ 'notificationExclusions': values }, (data) => {
+            values.push(selected);
+            console.log(values);
 
-            chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-                var activeTab = tabs[0];
-                chrome.tabs.sendMessage(activeTab.id, { "message": "success_notification", data: `'${selected}' added successfully.` });
-            });
+            setStorage('notificationExclusions', data, (error, data) => {
+                if (error) {
+                    return sendMessage('error_notification', `Failed to add '${selected}'.`);
+                }
+                return sendMessage('success_notification', `'${selected}' added successfully.`);
+            })
         });
-    })
+    }
 })
