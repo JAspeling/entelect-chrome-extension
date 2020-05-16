@@ -1,3 +1,6 @@
+import { DataMessage } from '../shared/message';
+import { getStorage, setStorage } from '../shared/utils';
+
 export class Background {
 
     constructor() {
@@ -30,48 +33,31 @@ export class Background {
         chrome.contextMenus.onClicked.addListener((data) => this.addToExclusions(data));
     }
 
-    private sendMessage(message: string, data: any) {
+    private sendMessage(message: DataMessage) {
         chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
             var activeTab = tabs[0];
             // TODO: Might need to implement a promise-like callback here for the response.
-            chrome.tabs.sendMessage(activeTab.id!, { message, data });
+            chrome.tabs.sendMessage(activeTab.id!, message);
         });
     }
 
-    private setStorage<T>(key: string, data: T): Promise<T> {
-        return new Promise<T>((resolve, reject) => {
-            var obj: any = {};
-            obj[key] = data;
-            chrome.storage.sync.set(obj, () => {
-                resolve(data);
-            })
-        });
-    }
-
-    private getStorage<T>(key: string): Promise<T> {
-        return new Promise<T>((resolve, reject) => {
-            chrome.storage.sync.get(key, (data: any) => {
-                resolve(data);
-            });
-        })
-    }
-
-    private async addToExclusions(context: any): Promise<void> {
+    private async addToExclusions(context: chrome.contextMenus.OnClickData): Promise<void> {
+        if (!context.selectionText) return;
         const selected = context.selectionText.trim();
 
-        const values: string[] = await this.getStorage('notificationExclusions');
+        const values: string[] = await getStorage('notificationExclusions');
 
         if (values.find(val => val.toLowerCase() === selected.toLowerCase())) {
-            return this.sendMessage('warning_notification', `${selected} already in the exclusion list.`);
+            return this.sendMessage(new DataMessage('warning_notification', `${selected} already in the exclusion list.`));
         }
         values.push(selected);
         console.log(values);
 
         try {
-            await this.setStorage('notificationExclusions', values);
-            return this.sendMessage('success_notification', `'${selected}' added successfully.`);
+            await setStorage('notificationExclusions', values);
+            return this.sendMessage(new DataMessage('success_notification', `'${selected}' added successfully.`));
         } catch (error) {
-            return this.sendMessage('error_notification', `Failed to add '${selected}'.`);
+            return this.sendMessage(new DataMessage('error_notification', `Failed to add '${selected}'.`));
         }
     }
 }

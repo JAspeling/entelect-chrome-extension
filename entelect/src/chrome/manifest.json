@@ -1,0 +1,53 @@
+{
+    "manifest_version": 2,
+    "name": "Entelect",
+    "version": "0.0.0.23",
+    "description": "General extensions for the entelect employee site",
+    "author": "Johan Aspeling",
+    "homepage_url": "https://github.com/JAspeling/entelect-chrome-extension",
+    "permissions": [
+        "storage",
+        "declarativeContent",
+        "activeTab",
+        "contextMenus"
+    ],
+    "background": {
+        "scripts": [
+            "background.bundle.js"
+        ],
+        "persistent": false
+    },
+    "options_page": "options.html",
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "css": [
+                "assets/vendor/sweetalert/sweetalert2.min.css",
+                "assets/vendor/toastr/toastr.min.css"
+            ],
+            "js": [
+                "assets/vendor/jquery/jquery-3.2.1.min.js",
+                "assets/vendor/toastr/toastr.min.js",
+                "assets/vendor/sweetalert/sweetalert2.all.min.js",
+                "page.bundle.js"
+            ]
+        }
+    ],
+    "page_action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16":  "assets/icons/entelect_16.png",
+            "32":  "assets/icons/entelect_32.png",
+            "48":  "assets/icons/entelect_48.png",
+            "128": "assets/icons/entelect_128.png"
+        }
+    },
+    "icons": {
+        "16":  "assets/icons/entelect_16.png",
+        "32":  "assets/icons/entelect_32.png",
+        "48":  "assets/icons/entelect_48.png",
+        "128": "assets/icons/entelect_128.png"
+    }
+}

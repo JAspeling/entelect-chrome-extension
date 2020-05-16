@@ -1,4 +1,4 @@
-import { isNullOrUndefined } from '../shared/utils';
+import { isNullOrUndefined, getStorage, setStorage } from '../shared/utils';
 declare const Swal: any;
 
 export class Options {
@@ -67,19 +67,6 @@ export class Options {
         this.exclusions.appendChild(itemContainer);
     }
 
-    private getOptionsFromChrome(): Promise<string[]> {
-        return new Promise<string[]>((resolve, reject) => {
-            chrome.storage.sync.get('notificationExclusions', function (data) {
-                const values: string[] = data.notificationExclusions;
-                if (values?.length > 0) {
-                    resolve(values);
-                } else {
-                    reject(`[notificationExclusions] - Values not found.'`)
-                }
-            })
-        })
-    }
-
     private createRemoveButton(): HTMLButtonElement {
         const removeElement: HTMLButtonElement = document.createElement("button");
         removeElement.classList.add('btn', 'btn-danger', 'remove');
@@ -106,16 +93,21 @@ export class Options {
         return inputContainer;
     }
 
-    private async loadOptions(): Promise<void> {
-        const options = await this.getOptionsFromChrome();
+    public async loadOptions(): Promise<void> {
+        const options = await getStorage<string[]>('notificationExclusions');
         options.forEach(option => this.addExclusion(option));
     }
 
-    private saveOptions(): void {
-        chrome.storage.sync.set({ 'notificationExclusions': this.inputs }, () => {
+    private async saveOptions(): Promise<void> {
+        setStorage('notificationExclusions', this.inputs).then(data => {
             toastr.success('Saved!');
+        }).catch((error) => {
+            console.error(error);
+            toastr.error('Failed to save the exclusion list');
         });
     }
 }
 
 const options = new Options();
+
+options.loadOptions()

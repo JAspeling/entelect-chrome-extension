@@ -2,7 +2,7 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
-const baseManifest = require("./chrome/manifest.json");
+const baseManifest = require("./src/chrome/manifest.json");
 const WebpackExtensionManifestPlugin = require("webpack-extension-manifest-plugin");
 
 const config = {
@@ -11,6 +11,7 @@ const config = {
         popup: './src/popup/popup.ts',
         options: './src/options/options.ts',
         background: './src/background/background.ts',
+        page: './src/page/page.ts',
         styles: './src/scss/styles.scss'
     },
     output: {
@@ -76,7 +77,7 @@ const config = {
         }),
         new CopyPlugin({
             patterns: [
-                { from: 'chrome/icons', to: 'assets/icons' },
+                { from: 'src/chrome/icons', to: 'assets/icons' },
                 { from: 'vendor', to: 'assets/vendor' },
             ],
         }),
