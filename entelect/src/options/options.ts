@@ -94,8 +94,8 @@ export class Options {
     }
 
     public async loadOptions(): Promise<void> {
-        const options = await getStorage<string[]>('notificationExclusions');
-        options.forEach(option => this.addExclusion(option));
+        const options = await getStorage<string[]>('notificationExclusions', []);
+        options?.forEach(option => this.addExclusion(option));
     }
 
     private async saveOptions(): Promise<void> {

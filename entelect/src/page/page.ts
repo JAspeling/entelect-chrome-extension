@@ -38,7 +38,7 @@ export class Page {
             confirmButtonText: 'Yes'
         }).then((result: any) => {
             if (result.value) {
-                getStorage<string[]>('notificationExclusions').then((values) => {
+                getStorage<string[]>('notificationExclusions', []).then((values) => {
                     this.exclusions = values;
                     console.log('Clearing notifications, excluding: ', this.exclusions);
 

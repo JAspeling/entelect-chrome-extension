@@ -22,10 +22,13 @@ export function containsOneOf(value: string, strings: string[], ignoreCase: bool
     return false;
 };
 
-export function getStorage<T>(key: string): Promise<T> {
+export function getStorage<T>(key: string, defaultValue?: any): Promise<T> {
     return new Promise<T>((resolve, reject) => {
         chrome.storage.sync.get(key, (data: any) => {
-            resolve(data[key]);
+            if (data && data[key]) {
+                return resolve(data[key]);
+            }
+            return resolve(defaultValue);
         });
     })
 }

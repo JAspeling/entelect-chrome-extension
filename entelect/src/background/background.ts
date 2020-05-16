@@ -34,6 +34,7 @@ export class Background {
     }
 
     private sendMessage(message: DataMessage) {
+        console.log('Sending Message', message);
         chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
             var activeTab = tabs[0];
             // TODO: Might need to implement a promise-like callback here for the response.
@@ -45,7 +46,7 @@ export class Background {
         if (!context.selectionText) return;
         const selected = context.selectionText.trim();
 
-        const values: string[] = await getStorage('notificationExclusions');
+        const values: string[] = await getStorage('notificationExclusions', []);
 
         if (values.find(val => val.toLowerCase() === selected.toLowerCase())) {
             return this.sendMessage(new DataMessage('warning_notification', `${selected} already in the exclusion list.`));
