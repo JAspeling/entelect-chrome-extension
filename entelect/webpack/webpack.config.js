@@ -2,21 +2,20 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
-const baseManifest = require("./src/chrome/manifest.json");
+const baseManifest = require("../manifest.json");
 const WebpackExtensionManifestPlugin = require("webpack-extension-manifest-plugin");
 
 const config = {
-    mode: 'development',
     entry: {
         popup: './src/popup/popup.ts',
         options: './src/options/options.ts',
         background: './src/background/background.ts',
         page: './src/page/page.ts',
-        styles: './src/scss/styles.scss'
+        styles: './src/assets/scss/styles.scss'
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, '../dist')
     },
     devtool: 'inline-source-map',
     module: {
@@ -54,17 +53,6 @@ const config = {
         ]
     },
     plugins: [
-        // new HtmlWebpackPlugin({
-        //     title: "Entelect Extensions",
-        //     meta: {
-        //         charset: "utf-8",
-        //         viewport: "width=device-width, initial-scale=1, shrink-to-fit=no", "theme-color": "#000000"
-        //     },
-        //     manifest: "manifest.json",
-        //     filename: "index.html",
-        //     template: "./static/index.html",
-        //     hash: true
-        // }),
         new HtmlWebpackPlugin({
             filename: 'popup.html',
             template: 'src/popup/popup.html',
@@ -77,8 +65,8 @@ const config = {
         }),
         new CopyPlugin({
             patterns: [
-                { from: 'src/chrome/icons', to: 'assets/icons' },
-                { from: 'vendor', to: 'assets/vendor' },
+                { from: 'src/assets/icons', to: 'assets/icons' },
+                { from: 'src/assets/vendor', to: 'assets/vendor' },
             ],
         }),
         new WebpackExtensionManifestPlugin({
