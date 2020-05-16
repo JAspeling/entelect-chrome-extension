@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server",
-    "build": "webpack"
+    "build": "rimraf dist && webpack"
   },
   "author": "Johan Aspeling",
   "license": "ISC",
@@ -22,6 +22,7 @@
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
     "postcss-loader": "^3.0.0",
+    "rimraf": "^3.0.2",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "ts-loader": "^7.0.4",
