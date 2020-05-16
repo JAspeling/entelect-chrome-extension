@@ -10,12 +10,12 @@ const config = {
     entry: {
         popup: './src/popup/popup.ts',
         options: './src/options/options.ts',
+        background: './src/background/background.ts',
         styles: './src/scss/styles.scss'
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: 'dist' // required for webpack dev server, not needed here.
+        path: path.resolve(__dirname, 'dist')
     },
     devtool: 'inline-source-map',
     module: {
@@ -65,7 +65,7 @@ const config = {
         //     hash: true
         // }),
         new HtmlWebpackPlugin({
-            filename: 'index.html',
+            filename: 'popup.html',
             template: 'src/popup/popup.html',
             chunks: ['popup']
         }),
