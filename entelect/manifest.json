@@ -1,7 +1,10 @@
 {
+    "manifest_version": 2,
     "name": "Entelect",
     "version": "0.0.0.23",
     "description": "General extensions for the entelect employee site",
+    "author": "Johan Aspeling",
+    "homepage_url": "https://github.com/JAspeling/entelect-chrome-extension",
     "permissions": [
         "storage",
         "declarativeContent",
@@ -10,45 +13,41 @@
     ],
     "background": {
         "scripts": [
-            "js/background.js"
+            "background.bundle.js"
         ],
         "persistent": false
     },
-    "options_page": "html/options.html",
+    "options_page": "options.html",
     "content_scripts": [
         {
             "matches": [
                 "<all_urls>"
             ],
             "css": [
-                "vendor/sweetalert/sweetalert2.min.css",
-                "vendor/toastr/toastr.min.css"
+                "assets/vendor/sweetalert/sweetalert2.min.css",
+                "assets/vendor/toastr/toastr.min.css"
             ],
             "js": [
-                "vendor/jquery-3.2.1.min.js",
-                "vendor/toastr/toastr.min.js",
-                "vendor/sweetalert/sweetalert2.all.min.js",
-                "js/utils.js",
-                "js/dismiss-notifications.js"
+                "assets/vendor/jquery/jquery-3.2.1.min.js",
+                "assets/vendor/toastr/toastr.min.js",
+                "assets/vendor/sweetalert/sweetalert2.all.min.js",
+                "page.bundle.js"
             ]
         }
     ],
     "page_action": {
-        "default_popup": "html/popup.html",
+        "default_popup": "popup.html",
         "default_icon": {
-            "16": "images/entelect_16.png",
-            "32": "images/entelect_32.png",
-            "48": "images/entelect_48.png",
-            "128": "images/entelect_128.png"
+            "16":  "assets/icons/entelect_16.png",
+            "32":  "assets/icons/entelect_32.png",
+            "48":  "assets/icons/entelect_48.png",
+            "128": "assets/icons/entelect_128.png"
         }
     },
     "icons": {
-        "16": "images/entelect_16.png",
-        "32": "images/entelect_32.png",
-        "48": "images/entelect_48.png",
-        "128": "images/entelect_128.png"
-    },
-    "manifest_version": 2,
-    "author": "Johan Aspeling",
-    "homepage_url": "https://github.com/JAspeling/entelect-chrome-extension"
+        "16":  "assets/icons/entelect_16.png",
+        "32":  "assets/icons/entelect_32.png",
+        "48":  "assets/icons/entelect_48.png",
+        "128": "assets/icons/entelect_128.png"
+    }
 }
