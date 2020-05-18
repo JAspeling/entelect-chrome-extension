@@ -1,4 +1,4 @@
-import { isNullOrUndefined, isNullOrWhitespace } from '../../shared/utils';
+import { isNullOrUndefined, isNullOrWhitespace } from '../../shared/utility-functions';
 import { Dict } from '../dictionary.interface';
 
 export class DatabaseSettings {

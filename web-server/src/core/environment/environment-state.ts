@@ -1,4 +1,6 @@
-import { noop, isNullOrUndefined } from '../../shared/utils';
+import { isNullOrUndefined } from 'util';
+
+import { noop } from '../../shared/utility-functions';
 import { DatabaseSettings } from './database-settings';
 
 export class EnvironmentState {
