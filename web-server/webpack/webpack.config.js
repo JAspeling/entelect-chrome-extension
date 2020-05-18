@@ -1,3 +1,4 @@
+const nodeExternals = require('webpack-node-externals');
 const path = require('path');
 
 const config = {
@@ -18,10 +19,24 @@ const config = {
                 use: 'ts-loader',
                 exclude: /node_modules/
             },
+            // {
+            //     test: /\.ts$/,
+            //     loader: 'file-replace-loader',
+            //     options: {
+            //         condition: 'always', // <-- Note that the rule applies for all files! But you can use other conditions too
+            //         replacement(resourcePath) {
+            //             const mapping = {
+            //                 [path.resolve('./../src/environments/environment.ts')]: path.resolve('./../src/environments/environment.develop.ts.ts'),
+            //             };
+            //             return mapping[resourcePath];
+            //         },
+            //         async: true,
+            //     }
+            // },
         ]
     },
     plugins: [
-       
+
     ],
     // which file extensions it adds to the imports it finds
     resolve: {
@@ -32,7 +47,9 @@ const config = {
     node: {
         fs: 'empty',
         net: 'empty',
-    }
+    },
+    // Excludes node_module packages from the main bundle
+    externals: [nodeExternals()]
 };
 
 module.exports = config;

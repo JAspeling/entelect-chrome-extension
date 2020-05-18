@@ -1,6 +1,6 @@
 import express = require('express');
 import { LinkRepoRouting } from './routing/link-repo';
-import { Mongoose } from './database/mongoose';
+import { Mongoose } from './database/models/mongoose';
 
 // const express = require('express');
 // const bodyParser = require('body-parser');
