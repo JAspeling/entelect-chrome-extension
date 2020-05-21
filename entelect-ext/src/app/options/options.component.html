@@ -1,0 +1,93 @@
+<div class="container-sm">
+    <div class="options">
+
+        <div class="jumbotron">
+            <h1 class="display-4">Entelect options</h1>
+            <p class="lead">This is a simple extension for managing scripts on the entelect page.</p>
+            <hr class="my-4">
+            <!-- <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
+
+            <!-- NOTIFICATIONS -->
+            <div class="card">
+                <div class="card-header">
+                    Notifications
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Exclusion list</h5>
+                    <p class="card-text">When marking the notifications as read, notifications containing the following names will be ignored.</p>
+
+                    <button type="button"
+                        id="addExclusion"
+                        class="btn btn-primary btn-sm btn-block mb-3" (click)="addExclusion()">Add exclusion</button>
+
+                    <div class="exclusions"
+                        id="exclusions"
+                        cdkDropList
+                        (cdkDropListDropped)="drop($event)">
+                        <ng-container *ngFor="let item of exclusions; let index = index; trackBy:trackByIndex">
+                            <div class="row form-group">
+
+                                <div cdkDrag
+                                    class="col-11 exclusion-item">
+                                    <div cdkDragHandle
+                                        class="drag-handler">
+                                        <i class="fa fa-reorder"></i>
+                                    </div>
+                                    <input type="text"
+                                        class="form-control"
+                                        [(ngModel)]="exclusions[index]">
+                                </div>
+                                <button class="btn btn-danger remove" (click)="removeExclusion(index)"> - </button>
+                            </div>
+                        </ng-container>
+                        <div class="draggable-placeholder"
+                            *cdkDragPlaceholder></div>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button type="button"
+                        id="clearExclusions"
+                        class="btn btn-warning" (click)="clearExclusions()" >Clear</button>
+                    <button type="button"
+                        id="saveExclusions"
+                        class="btn btn-primary" (click)="saveExlusions()">Save</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="footer">
+    <div class="container-sm">
+        <div class="row">
+            <div class="middle col-2">
+                <img class="logo"
+                    src="assets/icons/entelect_128.png"
+                    alt="Entelect">
+                <span class="logo-info">Author: <strong>Johan Aspeling</strong></span>
+            </div>
+            <div class="neumorphic col info">
+                <ul>
+                    <li><a href="https://www.entelect.co.za/default.aspx"
+                            target="_blank">Home</a></li>
+                    <li><a href="https://www.entelect.co.za/DisplayLink.aspx?group=About%20Us&name=N/A"
+                            target="_blank">About Us</a></li>
+                    <li><a href="https://www.entelect.co.za/DisplayLink.aspx?group=Offerings&name=N/A"
+                            target="_blank">Offerings</a></li>
+                    <li><a href="https://www.entelect.co.za/DirectoryDisplay/PortfolioDirectory.aspx"
+                            target="_blank">Track Record</a></li>
+                    <li><a href="https://www.entelect.co.za/SocialResponsibility/GivingBackWithGallerySidebar.aspx"
+                            target="_blank">Giving Back</a></li>
+                    <li><a href="https://www.entelect.co.za/News/NewsWithCategoriesSideBar.aspx"
+                            target="_blank">News</a></li>
+                    <li><a href="https://www.entelect.co.za/DirectoryDisplay/CareersDirectory.aspx"
+                            target="_blank">Careers</a></li>
+                    <li><a href="https://www.entelect.co.za/Contact.aspx"
+                            target="_blank">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

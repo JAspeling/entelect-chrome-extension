@@ -1,0 +1,52 @@
+.options {
+    margin: 1rem;
+
+    .actions {
+        display: flex;
+
+        justify-content: flex-end;
+        margin: 1rem;
+
+        .button {
+            margin-left: 0.3rem;
+        }
+    }
+
+    .exclusions {
+        .remove {
+            flex-grow: 2;
+            margin-right: 15px;
+        }
+    }
+}
+
+.exclusion {
+    &.cdk-drop-list-dragging .exclusion-item:not(.cdk-drag-placeholder) {
+        transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    }
+    &-item {
+        display: flex;
+        overflow: hidden;
+
+        .drag-handler {
+            align-self: center;
+            margin: auto 10px;
+
+            i {
+                display: flex;
+                align-self: center;
+            }
+        }
+    }
+}
+
+.draggable-placeholder {
+    background: #ccc;
+    border: dotted 3px #999;
+    min-height: 60px;
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
