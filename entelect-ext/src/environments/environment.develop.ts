@@ -4,6 +4,6 @@ import { Environment } from './environment-class';
 export const environment = new Environment(
     new EnvironmentState({
         production: false,
-        api: 'http://localhost:27017/'
+        api: 'http://localhost:8000/'
     })
 );

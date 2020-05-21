@@ -72,8 +72,26 @@
                         "dev": {
                             "customWebpackConfig": {
                                 "path": "./webpack-dev.config.js"
-                            }
+                            },
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.develop.ts"
+                                }
+                            ]
+                        },
+                        "local": {
+                            "customWebpackConfig": {
+                                "path": "./webpack-dev.config.js"
+                            },
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.local.ts"
+                                }
+                            ]
                         }
+
                     }
                 },
                 "serve": {

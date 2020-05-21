@@ -1,5 +1,5 @@
 
-import { DataMessage } from '../core/message';
+import { DataMessage, MessageType, Messages } from '../core/message';
 import { ChromeUtils } from '../core/chrome-utils';
 import { containsOneOf } from '../core/shared/utils';
 
@@ -26,7 +26,7 @@ declare const Swal: any;
 
 export class PageService {
     private exclusions: string[] = [];
-    private utils = new ChromeUtils();
+    private chrome = new ChromeUtils();
 
     constructor() {
         console.log('Page.js script loaded.');
@@ -34,31 +34,43 @@ export class PageService {
     }
 
     private addListeners() {
-        chrome.runtime.onMessage.addListener((request: DataMessage, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => {
-            console.log('message received', request);
-            switch (request.message) {
-                case 'clear_notifications': this.clearNotifications(); break;
-                case 'success_notification': toastr.success(request.data); break;
-                case 'error_notification': toastr.error(request.data); break;
-                case 'warning_notification': toastr.warning(request.data); break;
+        chrome.runtime.onMessage.addListener((message: DataMessage, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => {
+            if (message.type === MessageType.Content_Script) {
+                switch (message.message) {
+                    case Messages.ContentScript.ClearNotification: this.clearNotifications(); break;
+                    case Messages.ContentScript.SuccessNotification: toastr.success(message.data); break;
+                    case Messages.ContentScript.ErrorNotification: toastr.error(message.data); break;
+                    case Messages.ContentScript.WarningNotification: toastr.warning(message.data); break;
+                }
             }
         });
     }
 
     private async clearNotifications() {
-        const exclusions = await this.utils.getStorage<string[]>('notificationExclusions', []);
+        const exclusions = await this.chrome.getStorage<string[]>('notificationExclusions', []);
 
         console.log(exclusions);
         const notifications = this.getNotifications();
         const filtered = this.filterNotifications(notifications, exclusions);
-        
-        const message: string = notifications.length === filtered.length 
+
+        if (filtered.length === 0) {
+            toastr.info('There are no notifications to be cleared.');
+            return;
+        } 
+
+        const top = exclusions.slice(3);
+
+        const exclusionText = exclusions.length > 3
+            ? `${exclusions.slice(0, 3).join(', ')} and a <a id="viewMore">few others</a>`
+            : `${exclusions.join(', ')}`
+
+        const message: string = notifications.length === filtered.length
             ? 'This will clear all the kudos'
-            : `This will clear ${filtered.length} out of ${notifications.length} kudos, excluding: ${exclusions.join(', ')}`
+            : `This will clear <strong>${filtered.length}</strong> out of <strong>${notifications.length}</strong> kudos, excluding: ${exclusionText}.`
 
         Swal.fire({
             title: 'Are you sure?',
-            text: message,
+            html: message,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -70,6 +82,9 @@ export class PageService {
                 toastr.success(`${closed} kudos cleared!`);
             }
         });
+
+        const viewMoreLink: HTMLAnchorElement = document.getElementById('viewMore')! as HTMLAnchorElement;
+        viewMoreLink.onclick = () => chrome.runtime.sendMessage(new DataMessage(MessageType.Background, 'open_options'));
     }
 
     private getNotifications(): HTMLDivElement[] {

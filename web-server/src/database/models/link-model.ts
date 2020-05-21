@@ -25,6 +25,11 @@ export class LinkDatabaseModel {
                 required: true,
                 trim: true
             },
+            image: {
+                type: String,
+                required: false,
+                trim: true
+            },
         });
     }
 

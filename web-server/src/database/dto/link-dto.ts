@@ -10,6 +10,7 @@ export class LinkDto extends BaseDto<LinkDto> {
     url: string;
     title: string;
     description: string;
+    image: string;
     // image
 
     validate(): LinkDto {

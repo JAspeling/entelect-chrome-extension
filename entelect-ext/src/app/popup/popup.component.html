@@ -1,9 +1,29 @@
-<div class="container-fluid main">
+<div class="container-fluid main popup">
     <button type="button"
         [disabled]="!canClearNotifications"
         [class.disabled]="!canClearNotifications"
         class="btn btn-sm neumorphic btn-block"
         (click)="clearNotifications()">Clear all notifications</button>
+
+    <!-- Links -->
+    <ng-container *ngIf="(links$ | async) as links">
+        <div *ngIf="links?.length > 0"
+            class="links-container">
+            <h5>Some things to take note of</h5>
+            <div *ngFor="let link of links"
+                class="link-container"
+                (click)="linkClicked(link)">
+                <div class="link-header">
+                    <img [src]="link.image || 'assets/images/no-image.png'"
+                        alt="No Image">
+                </div>
+                <div class="link-body">
+                    <span class="title">{{link.title}}</span>
+                    <span class="description">{{link.description}}</span>
+                </div>
+            </div>
+        </div>
+    </ng-container>
 
     <!-- Settings -->
     <div class="popup-options">
@@ -15,6 +35,7 @@
         <a href="#"
             class="neumorphic-button"
             title="Go to options"
-            id="options" (click)="goToOptions()"><i class="fa fa-gear"></i></a>
+            id="options"
+            (click)="goToOptions()"><i class="fa fa-gear"></i></a>
     </div>
 </div>

@@ -7,19 +7,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BackgroundComponent } from './background/background.component';
 import { OptionsModule } from './options/options.module';
-import { PopupComponent } from './popup/popup.component';
+import { PopupModule } from './popup/popup.module';
 
 @NgModule({
     declarations: [
         AppComponent,
         BackgroundComponent,
-        PopupComponent
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule, // required animations module
         AppRoutingModule,
         OptionsModule,
+        PopupModule,
         ToastrModule.forRoot()
     ],
     providers: [ToastrService],

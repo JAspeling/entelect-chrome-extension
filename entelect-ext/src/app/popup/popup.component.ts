@@ -1,34 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ChromeUtils } from '../core/chrome-utils';
-import { DataMessage } from '../core/message';
-import { ChangeDetectionStrategy } from '@angular/compiler/src/compiler_facade_interface';
+import { DataMessage, MessageType } from '../core/message';
+import { Links, Link } from '../core/models/link';
+import { LinksService } from '../core/services/links.service';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-popup',
-    templateUrl: './popup.component.html',
-    styleUrls: ['./popup.component.scss']
+    templateUrl: './popup.component.html'
 })
 export class PopupComponent implements OnInit {
-    canClearNotifications: boolean = false;
-    public chrome: ChromeUtils = new ChromeUtils();
+    public canClearNotifications: boolean = false;
+    public links$: Observable<Links>;
 
-    constructor() { }
+    private chrome: ChromeUtils = new ChromeUtils();
+
+    constructor(private readonly linksService: LinksService) {
+        this.links$ = this.linksService.getLinks();
+    }
 
     async ngOnInit(): Promise<void> {
-        console.log('Async ngOnInit');
-
         const host = await this.chrome.getHost();
 
         this.canClearNotifications = host?.toLowerCase().includes('employee.entelect.co.za');
-
-        console.log('Can clear', this.canClearNotifications);
     }
 
     public clearNotifications(): void {
         if (this.canClearNotifications) {
-            console.log('Clearing Notifications');
-            this.chrome.sendMessage(new DataMessage('clear_notifications'));
+            this.chrome.sendMessage(new DataMessage(MessageType.Content_Script, 'clear_notifications'));
+            window.close();
         }
     }
 
@@ -36,4 +37,7 @@ export class PopupComponent implements OnInit {
         this.chrome.openOptions();
     }
 
+    public linkClicked(link: Link): void {
+        window.open(link.url, '_blank');
+    }
 }
