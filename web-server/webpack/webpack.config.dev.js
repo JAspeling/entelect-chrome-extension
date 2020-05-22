@@ -1,4 +1,6 @@
+const path = require('path');
 const CleanPlugin = require('clean-webpack-plugin');
+
 const config = require('./webpack.config');
 
 config.mode = 'development';
