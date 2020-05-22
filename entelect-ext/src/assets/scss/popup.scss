@@ -24,7 +24,6 @@
         overflow-y: auto;
         margin: 1rem auto;
         padding-bottom: 0.3rem;
-        border: 1px solid lightgrey;
 
         h5 {
             color: gray;
@@ -50,10 +49,11 @@
 
                 border-radius: 8px;
                 cursor: pointer;
+                animation: scaleDown .3s backwards;
 
                 &:hover {
                     transition: all .3s;
-                    transform: scale(1.04);
+                    animation: scaleUp .3s forwards;
                     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
                 }
             }
@@ -112,5 +112,23 @@
                 }
             }
         }
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.04);
+    }
+}
+
+@keyframes scaleDown {
+    from {
+        transform: scale(1.04);
+    }
+    to {
+        transform: scale(1);
     }
 }

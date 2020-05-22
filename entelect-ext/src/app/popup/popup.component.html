@@ -1,7 +1,6 @@
 <div class="container-fluid main popup">
-    <button type="button"
-        [disabled]="!canClearNotifications"
-        [class.disabled]="!canClearNotifications"
+    <button *ngIf="canClearNotifications"
+        type="button"
         class="btn btn-sm neumorphic btn-block"
         (click)="clearNotifications()">Clear all notifications</button>
 
