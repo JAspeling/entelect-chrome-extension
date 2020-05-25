@@ -3,12 +3,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { LinksService } from '../core/services/links.service';
+import { SharedModule } from '../core/shared/shared.module';
 import { PopupComponent } from './popup.component';
 
 @NgModule({
     imports: [
         CommonModule,
-        HttpClientModule
+        HttpClientModule,
+        SharedModule
     ],
     declarations: [
         PopupComponent

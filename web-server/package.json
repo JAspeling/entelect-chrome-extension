@@ -6,7 +6,7 @@
     "scripts": {
         "start": "node dist/main.bundle.js",
         "build": "webpack --config webpack/webpack.config.dev.js",
-        "debug": "nodemon dist/main.bundle.js",
+        "debug": "nodemon --inspect dist/main.bundle.js",
         "build-local": "webpack --config webpack/webpack.config.local.js",
         "build-local-watch": "webpack --config webpack/webpack.config.local.js --watch",
         "build-dev": "webpack --config webpack/webpack.config.dev.js",

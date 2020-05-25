@@ -29,7 +29,7 @@ export class PageService {
     private chrome = new ChromeUtils();
 
     constructor() {
-        console.log('Page.js script loaded.');
+        // console.log('Page.js script loaded.');
         this.addListeners();
     }
 

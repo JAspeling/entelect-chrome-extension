@@ -11,10 +11,7 @@ export class Main {
     constructor() {
         this.app = express();
 
-        console.log('Process Env', process.env);
-        console.log('Process Port', process.env.PORT);
-        console.log(process.env.NODE_ENV);
-        console.log(process.env.PORT);
+        this.app.use(express.json()) 
 
         this.port = +process.env.PORT || 8000;
 

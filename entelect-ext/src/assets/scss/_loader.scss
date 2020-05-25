@@ -1,0 +1,12 @@
+.loader {
+    &-message {
+        position: fixed;
+        left: 0;
+        bottom: 0.25rem;
+
+        margin-left: 0.5rem;
+
+        color: lightgrey;
+        font-size: 10px;
+    }
+}

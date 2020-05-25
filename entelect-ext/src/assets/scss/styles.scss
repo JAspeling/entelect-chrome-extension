@@ -4,17 +4,15 @@
 @import '~ngx-toastr/toastr';
 @import '~sweetalert2/dist/sweetalert2.min.css';
 
-// @import './../vendor/bootstrap/bootstrap.min.css';
-// @import './../vendor/toastr/toastr.min.css';
-// @import './../vendor/sweetalert/sweetalert2.min.css';
-// @import './../vendor/jquery-ui/jquery-ui.min.css';
-// @import '~jquery-ui/themes/base/all.css';
+@import './typography';
 
 @import './neumorphism/neumorphism.scss';
 
 @import './popup.scss';
 @import './options.scss';
 @import './footer.scss';
+@import './horizontal-loader.scss';
+@import './loader';
 @import './scrollbars.scss';
 
 html,

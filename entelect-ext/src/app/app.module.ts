@@ -12,7 +12,7 @@ import { PopupModule } from './popup/popup.module';
 @NgModule({
     declarations: [
         AppComponent,
-        BackgroundComponent,
+        BackgroundComponent
     ],
     imports: [
         BrowserModule,

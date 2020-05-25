@@ -27,7 +27,7 @@ export class LinkRepoRouting extends Routing {
     }
 
     private async addLink(request: express.Request, response: express.Response) {
-        var dto = new LinkDto(request.body).validate();
+        var dto = new LinkDto({ ...request.body }).validate();
 
         const link = new LinkDatabaseModel.Model(dto);
         try {
