@@ -8,7 +8,7 @@ export const environment = new Environment(
         database: new DatabaseSettings({
             protocol: process.env.mongoDb_protocol || 'mongodb://',
             host: process.env.mongoDb_host || '127.0.0.1',
-            port: process.env.mongoDb_port || '27017',
+            port: process.env.mongoDb_port || '27018',
             database: process.env.mongoDb_database || 'entelect-extension'
         })
     })

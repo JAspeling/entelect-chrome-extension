@@ -49,7 +49,8 @@ const config = {
         net: 'empty',
     },
     // Excludes node_module packages from the main bundle
-    externals: [nodeExternals()]
+    externals: [nodeExternals()],
+    target: 'node'
 };
 
 module.exports = config;

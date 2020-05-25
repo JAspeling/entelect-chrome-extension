@@ -31,9 +31,7 @@ export class DatabaseSettings {
 
         if (!isNullOrUndefined(this.options)) {
             result += '?';
-            Object.keys(this.options).forEach(key => {
-                result += `${key}=${this.options[key]}`;
-            })
+            result += Object.keys(this.options).map(key => `${key}=${this.options[key]}`).join('&');
         }
 
         return result;

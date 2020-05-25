@@ -4,27 +4,28 @@ import { Mongoose } from './database/mongoose';
 import { Server } from 'http';
 import { logDebug } from './shared/utility-functions';
 
-// const express = require('express');
-// const bodyParser = require('body-parser');
-// const timeout = require('connect-timeout');
-
-// require('./routing/link-repo');
-
-
 export class Main {
     app: express.Application;
-    port: string;
+    port: number;
 
     constructor() {
         this.app = express();
-        this.port = process.env.PORT || '8000';
+
+        console.log('Process Env', process.env);
+        console.log('Process Port', process.env.PORT);
+        console.log(process.env.NODE_ENV);
+        console.log(process.env.PORT);
+
+        this.port = +process.env.PORT || 8000;
 
         this.initProxy()
         this.initRoutes();
     }
 
     public async run(): Promise<void> {
-        await this.connectToDatabase();
+        await this.connectToDatabase().catch(err => {
+            console.error('Unable to connect to the database', err);
+        });
         await this.startupRestfulServer();
     }
 
