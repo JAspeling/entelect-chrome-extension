@@ -31,18 +31,6 @@ export class BackgroundComponent {
 
     private onInstalled(): void {
         chrome.runtime.onInstalled.addListener(function () {
-
-            chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
-                chrome.declarativeContent.onPageChanged.addRules([{
-                    conditions: [
-                        new chrome.declarativeContent.PageStateMatcher({
-                            pageUrl: { hostEquals: 'employee.entelect.co.za' },
-                        })
-                    ],
-                    actions: [new chrome.declarativeContent.ShowPageAction()]
-                }]);
-            });
-
             chrome.contextMenus.create({
                 "id": "addToExclusions",
                 "title": "Add to exclusion",

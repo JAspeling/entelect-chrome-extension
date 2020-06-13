@@ -8,8 +8,6 @@
     "permissions": [
         "tabs",
         "storage",
-        "webNavigation",
-        "declarativeContent",
         "contextMenus"
     ],
     "browser_action": {

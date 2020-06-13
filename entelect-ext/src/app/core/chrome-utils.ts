@@ -11,6 +11,8 @@ export class ChromeUtils {
         });
     }
 
+
+    // Requires 'tabs' permission
     public getUrl(): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
@@ -24,6 +26,7 @@ export class ChromeUtils {
         })
     }
 
+    // Requires 'tabs' permission
     public getHost(): Promise<string> {
         return new Promise(async (resolve, reject) => {
             try {
