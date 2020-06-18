@@ -4,16 +4,39 @@
     "description": "Web API for the Entelect chrome extension",
     "main": "index.js",
     "scripts": {
-        "start": "node src/app.js",
-        "dev": "nodemon src/app.js js"
+        "start": "node dist/main.bundle.js",
+        "build": "webpack --config webpack/webpack.config.dev.js",
+        "debug": "nodemon --inspect dist/main.bundle.js",
+        "build-local": "webpack --config webpack/webpack.config.local.js",
+        "build-local-watch": "webpack --config webpack/webpack.config.local.js --watch",
+        "build-dev": "webpack --config webpack/webpack.config.dev.js",
+        "build-prod": "webpack --config webpack/webpack.config.prod.js"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "chalk": "^4.0.0",
         "connect-timeout": "^1.9.0",
-        "express": "^4.17.1"
+        "express": "^4.17.1",
+        "fs": "0.0.1-security",
+        "jsonwebtoken": "^8.5.1",
+        "mongodb": "^3.5.7",
+        "mongoose": "^5.9.14",
+        "validator": "^13.0.0"
     },
     "devDependencies": {
-        "nodemon": "^2.0.3"
+        "@types/express": "^4.17.6",
+        "@types/mongoose": "^5.7.20",
+        "@types/node": "^14.0.1",
+        "@types/webpack": "^4.41.13",
+        "clean-webpack-plugin": "^3.0.0",
+        "file-replace-loader": "^1.2.0",
+        "nodemon": "^2.0.3",
+        "ts-loader": "^7.0.4",
+        "typescript": "^3.9.2",
+        "webpack": "^4.43.0",
+        "webpack-cli": "^3.3.11",
+        "webpack-dev-server": "^3.11.0",
+        "webpack-node-externals": "^1.7.2"
     }
 }

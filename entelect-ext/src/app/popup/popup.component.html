@@ -1,0 +1,50 @@
+<app-horizontal-loader></app-horizontal-loader>
+<div class="container-fluid main popup">
+    <button *ngIf="canClearNotifications"
+        type="button"
+        class="btn btn-sm neumorphic btn-block"
+        (click)="clearNotifications()">Clear all notifications</button>
+
+    <!-- Links -->
+    <ng-container *ngIf="links?.length > 0">
+        <div class="links-container">
+            <h5>Some things to take note of</h5>
+            <div *ngFor="let link of links"
+                class="link-container"
+                (click)="linkClicked(link)">
+                <div class="link-header">
+                    <img [src]="link.image || 'assets/images/no-image.png'"
+                        alt="No Image">
+                </div>
+                <div class="link-body">
+                    <span class="title">{{link.title}}</span>
+                    <span class="description">{{link.description}}</span>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="nothingAvailable">
+        <h4>Nothing here for now</h4>
+        <span>Try heading over to <a href="https://employee.entelect.co.za"
+                target="_blank">the employee portal</a>.</span>
+    </ng-container>
+
+    <!-- Settings -->
+    <div class="popup-options">
+        <a href="https://github.com/JAspeling/entelect-chrome-extension/issues"
+            target="_blank"
+            class="neumorphic-button"
+            title="Report issue"
+            id="issues"><i class="fa fa-bug"></i></a>
+        <a href="#"
+            class="neumorphic-button"
+            title="Go to options"
+            id="options"
+            (click)="goToOptions()"><i class="fa fa-gear"></i></a>
+    </div>
+</div>
+
+<div>
+    <span class="loader-message">{{loadingMessage}}</span>
+</div>

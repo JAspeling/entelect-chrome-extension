@@ -1,0 +1,31 @@
+{
+    "permissions": {
+        "tabs": [
+            "Required to send messages via the chrome.tabs api to the page content script, and vice versa",
+            "Required by chrome.tabs.query for resolving the current URL of the active tab. This is required for running checks on specific pages (To see if the active page is 'employee.entelect.co.za')"
+        ],
+        "storage": [
+            "Needed to save the local storage of users whose notifications won't be cleared when selecting 'Clear all notifications'",
+            "Options are stored in the browser storage via the extension - this is used to make the extension customizable."
+        ],
+        "webNavigation": [
+            "Not Needed"
+        ],
+        "declarativeContent": [
+            "Not Needed"
+        ],
+        "contextMenus": [
+            "Used to add a context menu entry to every page, where you can highlight some text and add it to the exclusions list."
+        ]
+    },
+    "Host permission": [
+        {
+            "matches": "<all_urls>",
+            "reason": "The content script is meant to run on every page, as it is used to send push notifications to the current active page in the form of notifications and reminders to the employee."
+        }
+    ],
+    "Remote code": [
+        "Font awesome stylesheet is referenced",
+        "API calls are being made to a hosted nodejs server to retrieve additional information (Repository of links, managed externally)"
+    ]
+}
