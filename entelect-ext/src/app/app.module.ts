@@ -9,6 +9,7 @@ import { BackgroundComponent } from './background/background.component';
 import { OptionsModule } from './options/options.module';
 import { PopupModule } from './popup/popup.module';
 import { GlobalErrorHandler } from './core/services/error.handler';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -23,8 +24,11 @@ import { GlobalErrorHandler } from './core/services/error.handler';
         PopupModule,
         ToastrModule.forRoot()
     ],
-    providers: [ToastrService,
-        { provide: ErrorHandler, useClass: GlobalErrorHandler }
+    providers: [
+        ToastrService,
+        { provide: ErrorHandler, useClass: GlobalErrorHandler },
+         // This is needed because the manifest loads the index.html file, followed by a #, 
+        { provide: LocationStrategy, useClass: HashLocationStrategy }
     ],
     bootstrap: [AppComponent]
 })
