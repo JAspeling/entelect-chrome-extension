@@ -84,7 +84,9 @@ export class PageService {
         });
 
         const viewMoreLink: HTMLAnchorElement = document.getElementById('viewMore')! as HTMLAnchorElement;
-        viewMoreLink.onclick = () => chrome.runtime.sendMessage(new DataMessage(MessageType.Background, 'open_options'));
+        if (viewMoreLink) {
+            viewMoreLink.onclick = () => chrome.runtime.sendMessage(new DataMessage(MessageType.Background, 'open_options'));
+        }
     }
 
     private getNotifications(): HTMLDivElement[] {

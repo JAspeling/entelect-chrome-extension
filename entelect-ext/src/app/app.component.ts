@@ -9,10 +9,15 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class AppComponent {
     constructor(private activatedRoute: ActivatedRoute, private route: Router) {
 
+        // console.log('AppComponent ctor');
+
         // activatedRoute.queryParams.subscribe((params: Params) => {
         //     if (params['page']) {
+        //         const hashedRoute = `/ext.html#/page=options`
         //         const route = `/${params['page']}`;
-        //         this.route.navigate([route]);
+                
+        //         console.log(`Routing to ${hashedRoute}`);
+        //         // this.route.navigate([route]);
         //     }
         // })
 
